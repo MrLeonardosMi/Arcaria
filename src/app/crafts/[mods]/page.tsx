@@ -9,6 +9,7 @@ import { toast } from "nextjs-toast-notify";
 import copy from "clipboard-copy";
 import "nextjs-toast-notify/dist/nextjs-toast-notify.css";
 import { generateDeleteScript } from "~/lib/utils/kubejs/remove";
+import { useParams } from "next/navigation";
 
 const types: Record<string, string[]> = {
     "kubejs": ["workbench", "smelting", "blasting", "smoking", "campfireCooking", "stonecutting"]
@@ -22,7 +23,8 @@ const dataTypes: Record<string, number> = {
     "stonecutting": 1
 }
 
-export default function VersionPage({ params: { version } }: { params: { version: string }, searchParams: any }) {
+export default function VersionPage() {
+    const mods = useParams().mods as string;
     const t = useTranslations();
     const modalRef = useRef(null);
     const deleteModalRef = useRef(null);
@@ -98,9 +100,9 @@ export default function VersionPage({ params: { version } }: { params: { version
 
     return (
         <div className="container flex flex-col gap-10 px-4 py-16 items-center justify-center h-screen">
-            <h1 className="text-4xl font-bold">{t(`main.buttons.crafts`)} ({version})</h1>
+            <h1 className="text-4xl font-bold">{t(`main.buttons.crafts`)} ({mods})</h1>
             <div className="flex flex-wrap gap-10 items-center justify-center">
-                {types[version]?.map(el => <button key={el} className="btn btn-solid-primary text-lg transition-all w-1/4" onClick={() => handleModal(el)}>{t(`crafts.buttons.${el}`)}</button>)}
+                {types[mods]?.map(el => <button key={el} className="btn btn-solid-primary text-lg transition-all w-1/4" onClick={() => handleModal(el)}>{t(`crafts.buttons.${el}`)}</button>)}
                 <button className="btn btn-solid-error text-lg transition-all w-1/4" onClick={handleDeleteModal}>{t('crafts.buttons.delete')}</button>
             </div>
             <Link href="/" className="btn btn-solid-secondary w-1/4 text-lg">{t('crafts.buttons.leave')}</Link>
