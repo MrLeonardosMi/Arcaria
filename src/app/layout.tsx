@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { Animation } from "./_components/Animation";
-import { getLocale, getMessages } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Arcadia Tools",
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const locale = await getLocale();
   const messages = await getMessages();
   return (
     <html lang="en" className={`${GeistSans.variable}`}>

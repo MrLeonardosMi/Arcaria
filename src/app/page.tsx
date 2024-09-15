@@ -2,8 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-
-const types = ["KubeJS", "CraftTweaker", "MineTweaker"];
+import { types } from "./constants";
 
 export default function HomePage() {
   const t = useTranslations();
