@@ -1,0 +1,35 @@
+{
+    "main": {
+        "buttons": {
+            "crafts": "Crafts"
+        }
+    },
+    "crafts": {
+        "buttons": {
+            "workbench": "Workbench",
+            "smelting": "Furnace",
+            "blasting": "Blast Furnace",
+            "smoking": "Smoker",
+            "campfireCooking": "Campfire",
+            "stonecutting": "Stonecutter",
+            "delete": "Delete",
+            "copy": "Create",
+            "cancel": "Clear",
+            "leave": "Return"
+        },
+        "text": {
+            "output": "Output items",
+            "input": "Input items",
+            "copied": "Recipe script copied to clipboard",
+            "shaped": "Use shaped recipe",
+            "deleted": "Deletion script copied to clipboard"
+        },
+        "delete": {
+            "output": "Output item",
+            "input": "Input item",
+            "mod": "Mod",
+            "type": "Recipe type",
+            "id": "Recipe ID"
+        }
+    }
+}
