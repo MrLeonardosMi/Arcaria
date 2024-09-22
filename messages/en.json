@@ -12,10 +12,23 @@
             "smoking": "Smoker",
             "campfireCooking": "Campfire",
             "stonecutting": "Stonecutter",
+            "oredict_add": "OreDict: addAll",
+            "oredict_mirror": "OreDict: mirror",
+            "smelt_fuel": "Fuel",
+            "tooltip": "Tooltip",
+            "bloodmagic_altar": "Blood Magic: Altar",
+            "bloodmagic_orb": "Blood Magic: Orb",
+            "bloodmagic_alchemy": "Blood Magic: Alchemy",
             "delete": "Delete",
             "copy": "Create",
             "cancel": "Clear",
             "leave": "Return"
+        },
+        "additional_inputs": {
+            "blood_tier": "Altar tier",
+            "blood_lp": "LP amount",
+            "blood_usage_rate": "LP usage rate",
+            "blood_drain_rate": "LP drain rate"
         },
         "text": {
             "output": "Output items",
@@ -30,6 +43,10 @@
             "mod": "Mod",
             "type": "Recipe type",
             "id": "Recipe ID"
+        },
+        "additional_titles": {
+            "smelt_fuel": "Burn time",
+            "tooltip": "Tooltip"
         }
     }
 }

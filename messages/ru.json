@@ -12,10 +12,23 @@
             "smoking": "Коптильня",
             "campfireCooking": "Костер",
             "stonecutting": "Камнерез",
+            "oredict_add": "OreDict: addAll",
+            "oredict_mirror": "OreDict: mirror",
+            "smelt_fuel": "Топливо",
+            "tooltip": "Подсказка",
+            "bloodmagic_altar": "Blood Magic: Алтарь",
+            "bloodmagic_orb": "Blood Magic: Шар крови",
+            "bloodmagic_alchemy": "Blood Magic: Алхимия",
             "delete": "Удалить",
             "copy": "Создать",
             "cancel": "Стереть",
             "leave": "Вернуться"
+        },
+        "additional_inputs": {
+            "blood_tier": "Уровень алтаря",
+            "blood_lp": "Количество LP",
+            "blood_usage_rate": "Скорость использования LP",
+            "blood_drain_rate": "Скорость слива LP"
         },
         "text": {
             "output": "Выходные предметы",
@@ -30,6 +43,10 @@
             "mod": "Мод",
             "type": "Тип рецепта",
             "id": "ID рецепта"
+        },
+        "additional_titles": {
+            "smelt_fuel": "Время горения",
+            "tooltip": "Подсказка"
         }
     }
 }

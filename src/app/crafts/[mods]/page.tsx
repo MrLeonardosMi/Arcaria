@@ -12,15 +12,32 @@ import { generateDeleteScript } from "~/lib/utils/kubejs/remove";
 import { useParams } from "next/navigation";
 
 const types: Record<string, string[]> = {
-    "kubejs": ["workbench", "smelting", "blasting", "smoking", "campfireCooking", "stonecutting"]
-};
+    "kubejs": ["workbench", "smelting", "blasting", "smoking", "campfireCooking", "stonecutting"],
+    "minetweaker": ["workbench", "smelting", "smelt_fuel", "oredict_add", "oredict_mirror", "tooltip", "bloodmagic_altar", "bloodmagic_orb", "bloodmagic_alchemy"]
+}
+const typedDelete: Record<string, string[]> = {
+    "kubejs": ["output", "input", "mod", "type", "id"],
+    "minetweaker": ["output"]
+}
 const dataTypes: Record<string, number> = {
     "workbench": 3,
     "smelting": 1,
     "blasting": 1,
     "smoking": 1,
     "campfireCooking": 1,
-    "stonecutting": 1
+    "stonecutting": 1,
+    "oredict_add": 1,
+    "oredict_mirror": 1,
+    "smelt_fuel": 1,
+    "tooltip": 1,
+    "bloodmagic_altar": 1,
+    "bloodmagic_orb": 3,
+    "bloodmagic_alchemy": 3
+}
+const additionalTitles: string[] = ["smelt_fuel", "tooltip"];
+const additionalInputs: Record<string, string[]> = {
+    "bloodmagic_altar": ["blood_tier", "blood_lp", "blood_usage_rate", "blood_drain_rate"],
+    "bloodmagic_alchemy": ["blood_tier", "blood_lp"]
 }
 
 export default function VersionPage() {
@@ -80,7 +97,7 @@ export default function VersionPage() {
 
     const handleDelete = () => {
         const filters: Record<string, string> = {};
-        ['output', 'input', 'mod', 'type', 'id'].forEach(field => {
+        typedDelete[mods]?.forEach(field => {
             const value = (document.getElementById(`delete-${field}`) as HTMLInputElement).value;
             if (value)
                 filters[field] = value;
@@ -96,7 +113,7 @@ export default function VersionPage() {
         });
     }
 
-    const handleDeleteClear = () => ['output', 'input', 'mod', 'type', 'id'].map(field => (document.getElementById(`delete-${field}`) as HTMLInputElement).value = '');
+    const handleDeleteClear = () => typedDelete[mods]?.map(field => (document.getElementById(`delete-${field}`) as HTMLInputElement).value = '');
 
     return (
         <div className="container flex flex-col gap-10 px-4 py-16 items-center justify-center h-screen">
@@ -121,9 +138,9 @@ export default function VersionPage() {
                             </div>
                         </div>
                         <div className="w-1/2 text-center">
-                            <h2 className="text-md mb-3">{t('crafts.text.output')}</h2>
+                            <h2 className="text-md mb-3">{additionalTitles.includes(modalType) ? t(`crafts.additional_titles.${modalType}`) : t('crafts.text.output')}</h2>
                             <div className="flex flex-wrap justify-center items-center gap-5">
-                                <input id="output" className="input w-3/4 max-w-full" placeholder="modid:item" />
+                                <input id="output" className="input w-3/4 max-w-full" placeholder="" />
                             </div>
                             {modalType === "workbench" && (
                                 <div className="mt-3 flex justify-center">
@@ -134,6 +151,12 @@ export default function VersionPage() {
                                 </div>
                             )}
                         </div>
+                    </div>
+                    <div className="flex flex-wrap justify-center items-center gap-5">
+                        {additionalInputs[modalType]?.map(el => <div key={el}  className="form-group w-fit">
+                            <label htmlFor={`input-${el}`} className="form-label">{t(`crafts.additional_inputs.${el}`)}</label>
+                            <input id={`input-${el}`} className="input w-full max-w-full" />
+                        </div>)}
                     </div>
                     <div className="flex gap-3">
                         <button className="btn btn-success btn-block" onClick={handleCopy}>{t('crafts.buttons.copy')}</button>
@@ -149,26 +172,11 @@ export default function VersionPage() {
                     <label htmlFor="modal-delete" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
                     <h2 className="text-xl">{t('crafts.buttons.delete')}</h2>
                     <div className="flex flex-wrap justify-center gap-4">
-                        <div className="form-group w-fit">
-                            <label htmlFor="delete-output" className="form-label">{t('crafts.delete.output')}</label>
-                            <input id="delete-output" className="input w-full" />
-                        </div>
-                        <div className="form-group w-fit">
-                            <label htmlFor="delete-input" className="form-label">{t('crafts.delete.input')}</label>
-                            <input id="delete-input" className="input w-full" />
-                        </div>
-                        <div className="form-group w-fit">
-                            <label htmlFor="delete-mod" className="form-label">{t('crafts.delete.mod')}</label>
-                            <input id="delete-mod" className="input w-full" />
-                        </div>
-                        <div className="form-group w-fit">
-                            <label htmlFor="delete-type" className="form-label">{t('crafts.delete.type')}</label>
-                            <input id="delete-type" className="input w-full" />
-                        </div>
-                        <div className="form-group w-fit">
-                            <label htmlFor="delete-id" className="form-label">{t('crafts.delete.id')}</label>
-                            <input id="delete-id" className="input w-full" />
-                        </div>
+                        {typedDelete[mods]?.map(field =>
+                            <div className="form-group w-fit">
+                                <label htmlFor={`delete-${field}`} className="form-label">{t(`crafts.delete.${field}`)}</label>
+                                <input id={`delete-${field}`} className="input w-full" />
+                            </div>)}
                     </div>
                     <div className="flex gap-3">
                         <button className="btn btn-error btn-block" onClick={handleDelete}>{t('crafts.buttons.delete')}</button>
