@@ -13,32 +13,50 @@ import { useParams } from "next/navigation";
 
 const types: Record<string, string[]> = {
     "kubejs": ["workbench", "smelting", "blasting", "smoking", "campfireCooking", "stonecutting"],
-    "minetweaker": ["workbench", "smelting", "smelt_fuel", "oredict_add", "oredict_mirror", "tooltip", "bloodmagic_altar", "bloodmagic_orb", "bloodmagic_alchemy"]
+    "minetweaker": ["workbench", "smelting", "smelt_fuel", "oredict_add", "oredict_mirror", "tooltip", "bloodmagic_altar", "bloodmagic_orb", "bloodmagic_alchemy", "ic2_canner", "ic2_compressor", "ic2_extractor", "ic2_macerator", "ic2_metalformer", "ic2_orewasher", "ic2_recycler", "ic2_thermalcentrifuge", "ic2_scrapbox", "nei_hide", "nei_nameoverride", "nei_addentry"]
 }
 const typedDelete: Record<string, string[]> = {
     "kubejs": ["output", "input", "mod", "type", "id"],
     "minetweaker": ["output"]
 }
-const dataTypes: Record<string, number> = {
-    "workbench": 3,
-    "smelting": 1,
-    "blasting": 1,
-    "smoking": 1,
-    "campfireCooking": 1,
-    "stonecutting": 1,
-    "oredict_add": 1,
-    "oredict_mirror": 1,
-    "smelt_fuel": 1,
-    "tooltip": 1,
-    "bloodmagic_altar": 1,
-    "bloodmagic_orb": 3,
-    "bloodmagic_alchemy": 3
+const dataTypes: Record<string, number[]> = {
+    "workbench": [3, 3],
+    "smelting": [1, 1],
+    "blasting": [1, 1],
+    "smoking": [1, 1],
+    "campfireCooking": [1, 1],
+    "stonecutting": [1, 1],
+    "oredict_add": [1, 1],
+    "oredict_mirror": [1, 1],
+    "smelt_fuel": [1, 1],
+    "tooltip": [1, 1],
+    "bloodmagic_altar": [1, 1],
+    "bloodmagic_orb": [3, 3],
+    "bloodmagic_alchemy": [3, 3],
+    "ic2_canner": [1, 1],
+    "ic2_compressor": [1, 1],
+    "ic2_extractor": [1, 1],
+    "ic2_macerator": [1, 1],
+    "ic2_metalformer": [1, 1],
+    "ic2_orewasher": [2, 1],
+    "ic2_recycler": [1, 1],
+    "ic2_thermalcentrifuge": [2, 1],
+    "ic2_scrapbox": [1, 1],
+    "nei_hide": [1, 1],
+    "nei_nameoverride": [1, 1],
+    "nei_addentry": [1, 1]
 }
 const additionalTitles: string[] = ["smelt_fuel", "tooltip"];
 const additionalInputs: Record<string, string[]> = {
     "bloodmagic_altar": ["blood_tier", "blood_lp", "blood_usage_rate", "blood_drain_rate"],
-    "bloodmagic_alchemy": ["blood_tier", "blood_lp"]
+    "bloodmagic_alchemy": ["blood_tier", "blood_lp"],
+    "ic2_canner": ["ic2_wateringredient"],
+    "ic2_orewasher": ["ic2_water"],
+    "ic2_thermalcentrifuge": ["ic2_temperature"],
+    "ic2_scrapbox": ["ic2_chance"],
+    "nei_nameoverride": ["nei_name"]
 }
+const outputBlacklist: string[] = ["ic2_recycler", "nei_hide", "nei_nameoverride", "nei_addentry"];
 
 export default function VersionPage() {
     const mods = useParams().mods as string;
@@ -57,8 +75,10 @@ export default function VersionPage() {
     }
 
     const handleClear = () => {
-        Array.from({ length: dataTypes[modalType]! ** 2 || 0 }, (_, i) => document.getElementById(`input-${i}`) as HTMLInputElement).map(input => input.value = "");
-        (document.getElementById("output") as HTMLInputElement).value = "";
+        Array.from({ length: (dataTypes[modalType]?.[0] || 0) * (dataTypes[modalType]?.[1] || 0) }, (_, i) => document.getElementById(`input-${i}`) as HTMLInputElement).map(input => input.value = "");
+        const outputElement = document.getElementById("output") as HTMLInputElement;
+        if (outputElement)
+            outputElement.value = "";
     }
 
     const handleCopy = () => {
@@ -130,14 +150,14 @@ export default function VersionPage() {
                 <div className="modal-content flex flex-col gap-6 max-w-full w-1/2">
                     <label htmlFor="modal-craft" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
                     <h2 className="text-xl">{t(`crafts.buttons.${modalType}`)}</h2>
-                    <div className="flex w-full">
+                    <div className="flex w-full justify-center">
                         <div className="w-1/2 text-center">
                             <h2 className="text-md mb-3">{t('crafts.text.input')}</h2>
                             <div className="flex flex-wrap justify-center items-center gap-5">
-                                {new Array((dataTypes[modalType]! * dataTypes[modalType]!) || 0).fill(0).map((_, i) => <input id={`input-${i}`} className={`input ${dataTypes[modalType]! == 1 ? "w-3/4" : "w-1/4"} max-w-full`} placeholder="modid:item" key={i} />)}
+                                {new Array((dataTypes[modalType]?.[0] || 0) * (dataTypes[modalType]?.[1] || 0)).fill(0).map((_, i) => <input id={`input-${i}`} className={`input ${((dataTypes[modalType]?.[0] || 0) * (dataTypes[modalType]?.[1] || 0)) == 1 ? "w-3/4" : "w-1/4"} max-w-full`} placeholder="modid:item" key={i} />)}
                             </div>
                         </div>
-                        <div className="w-1/2 text-center">
+                        {!outputBlacklist.includes(modalType) && <div className="w-1/2 text-center">
                             <h2 className="text-md mb-3">{additionalTitles.includes(modalType) ? t(`crafts.additional_titles.${modalType}`) : t('crafts.text.output')}</h2>
                             <div className="flex flex-wrap justify-center items-center gap-5">
                                 <input id="output" className="input w-3/4 max-w-full" placeholder="" />
@@ -150,7 +170,7 @@ export default function VersionPage() {
                                     </label>
                                 </div>
                             )}
-                        </div>
+                        </div>}
                     </div>
                     <div className="flex flex-wrap justify-center items-center gap-5">
                         {additionalInputs[modalType]?.map(el => <div key={el}  className="form-group w-fit">
