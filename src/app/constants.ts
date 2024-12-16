@@ -1,1 +1,0 @@
-export const types: string[] = ["KubeJS", "CraftTweaker", "MineTweaker"];

@@ -1,7 +1,17 @@
 {
     "main": {
+        "title": "Arcadia Tools",
+        "description": "Генератор скриптов для Minecraft",
         "buttons": {
-            "crafts": "Крафты"
+            "crafts": "Крафты",
+            "kubejs": "KubeJS",
+            "minetweaker": "MineTweaker",
+            "crafttweaker": "CraftTweaker",
+            "description": {
+                "kubejs": "Современный моддинг на основе JavaScript",
+                "minetweaker": "Классическое управление рецептами",
+                "crafttweaker": "Классическое управление рецептами"
+            }
         }
     },
     "crafts": {
@@ -10,7 +20,7 @@
             "smelting": "Печь",
             "blasting": "Доменная печь",
             "smoking": "Коптильня",
-            "campfireCooking": "Костер",
+            "campfirecooking": "Костер",
             "stonecutting": "Камнерез",
             "oredict_add": "OreDict: addAll",
             "oredict_mirror": "OreDict: mirror",
@@ -19,15 +29,20 @@
             "bloodmagic_altar": "Blood Magic: Алтарь",
             "bloodmagic_orb": "Blood Magic: Шар крови",
             "bloodmagic_alchemy": "Blood Magic: Алхимия",
-            "ic2_canner": "IC2: Консерватор",
+            "ic2_canner_bottle": "IC2: Консервирование (Бутылки)",
+            "ic2_canner_enrich": "IC2: Консервирование (Обогащение)",
             "ic2_compressor": "IC2: Компрессор",
             "ic2_extractor": "IC2: Экстрактор",
-            "ic2_macerator": "IC2: Дробитель",
-            "ic2_metalformer": "IC2: Формовщик",
-            "ic2_orewasher": "IC2: Очиститель руды",
-            "ic2_recycler": "IC2: Утилизатор (ЧС)",
-            "ic2_thermalcentrifuge": "IC2: Термальная центрифуга",
+            "ic2_macerator": "IC2: Измельчитель",
+            "ic2_metal_former_cutting": "IC2: Металлоформовочная (Резка)",
+            "ic2_metal_former_extruding": "IC2: Металлоформовочная (Выдавливание)",
+            "ic2_metal_former_rolling": "IC2: Металлоформовочная (Прокатка)",
+            "ic2_ore_washer": "IC2: Рудопромывочная машина",
+            "ic2_thermal_centrifuge": "IC2: Термальная центрифуга",
+            "ic2_recycler_blacklist": "IC2: Утилизатор (Чёрный список)",
             "ic2_scrapbox": "IC2: Коробка утильсырья",
+            "avaritia_extreme": "Avaritia: Ужасающий верстак",
+            "avaritia_compressor": "Avaritia: Компрессор",
             "nei_hide": "NEI: Скрыть",
             "nei_nameoverride": "NEI: Переименовать",
             "nei_addentry": "NEI: Добавить предмет",
@@ -37,33 +52,41 @@
             "leave": "Вернуться"
         },
         "additional_inputs": {
-            "blood_tier": "Уровень алтаря",
-            "blood_lp": "Количество LP",
+            "shaped": "Форменное",
+            "blood_tier": "Уровень крови",
+            "blood_lp": "LP",
             "blood_usage_rate": "Скорость использования LP",
-            "blood_drain_rate": "Скорость слива LP",
+            "blood_drain_rate": "Скорость расхода LP",
+            "ic2_container": "Контейнер",
+            "ic2_fill_ingredient": "Наполнитель",
+            "ic2_additive": "Добавка",
+            "ic2_water_usage": "Расход воды",
+            "ic2_min_temperature": "Мин. температура",
             "ic2_wateringredient": "Предмет наполнения / жидкость",
             "ic2_water": "Количество воды (mb)",
             "ic2_temperature": "Температура",
             "ic2_chance": "Шанс (0-1)",
-            "nei_name": "Новое название"
+            "ic2_weight": "Вес",
+            "nei_name": "Название",
+            "nei_lore": "Описание",
+            "smelt_fuel": "Время горения",
+            "tooltip": "Подсказка"
         },
         "text": {
             "output": "Выходные предметы",
             "input": "Входные предметы",
             "copied": "Скрипт рецепта скопирован в буфер обмена",
             "shaped": "Использовать shaped рецепт",
-            "deleted": "Скрипт удаления скопирован в буфер обмена"
+            "deleted": "Скрипт удаления скопирован в буфер обмена",
+            "additional_inputs": "Дополнительные параметры",
+            "error": "Во время генерации произошла ошибка, проверьте правильность введенных данных"
         },
-        "delete": {
+        "delete_fields": {
             "output": "Выходной предмет",
             "input": "Входной предмет",
             "mod": "Мод",
             "type": "Тип рецепта",
             "id": "ID рецепта"
-        },
-        "additional_titles": {
-            "smelt_fuel": "Время горения",
-            "tooltip": "Подсказка"
         }
     }
 }

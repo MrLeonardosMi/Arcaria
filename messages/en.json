@@ -1,7 +1,17 @@
 {
     "main": {
+        "title": "Arcadia Tools",
+        "description": "Generator scripts for Minecraft",
         "buttons": {
-            "crafts": "Crafts"
+            "crafts": "Crafts",
+            "kubejs": "KubeJS",
+            "minetweaker": "MineTweaker",
+            "crafttweaker": "CraftTweaker",
+            "description": {
+                "kubejs": "Modern JavaScript-based modding",
+                "minetweaker": "Classic recipe manipulation",
+                "crafttweaker": "Classic recipe manipulation"
+            }
         }
     },
     "crafts": {
@@ -10,7 +20,7 @@
             "smelting": "Furnace",
             "blasting": "Blast Furnace",
             "smoking": "Smoker",
-            "campfireCooking": "Campfire",
+            "campfirecooking": "Campfire",
             "stonecutting": "Stonecutter",
             "oredict_add": "OreDict: addAll",
             "oredict_mirror": "OreDict: mirror",
@@ -19,34 +29,57 @@
             "bloodmagic_altar": "Blood Magic: Altar",
             "bloodmagic_orb": "Blood Magic: Orb",
             "bloodmagic_alchemy": "Blood Magic: Alchemy",
+            "ic2_canner_bottle": "IC2: Canning (Bottles)",
+            "ic2_canner_enrich": "IC2: Canning (Enrichment)",
+            "ic2_compressor": "IC2: Compressor",
+            "ic2_extractor": "IC2: Extractor",
+            "ic2_macerator": "IC2: Macerator",
+            "ic2_metal_former_cutting": "IC2: Metal Former (Cutting)",
+            "ic2_metal_former_extruding": "IC2: Metal Former (Extruding)",
+            "ic2_metal_former_rolling": "IC2: Metal Former (Rolling)",
+            "ic2_ore_washer": "IC2: Ore Washing Plant",
+            "ic2_thermal_centrifuge": "IC2: Thermal Centrifuge",
+            "ic2_recycler_blacklist": "IC2: Recycler (Blacklist)",
+            "ic2_scrapbox": "IC2: Scrapbox",
             "delete": "Delete",
             "copy": "Create",
             "cancel": "Clear",
             "leave": "Return"
         },
         "additional_inputs": {
+            "shaped": "Shaped",
             "blood_tier": "Altar tier",
             "blood_lp": "LP amount",
             "blood_usage_rate": "LP usage rate",
-            "blood_drain_rate": "LP drain rate"
+            "blood_drain_rate": "LP drain rate",
+            "ic2_container": "Container",
+            "ic2_fill_ingredient": "Filler",
+            "ic2_additive": "Additive",
+            "ic2_water_usage": "Water usage",
+            "ic2_min_temperature": "Min. temperature",
+            "ic2_wateringredient": "Filling item / liquid",
+            "ic2_water": "Water amount (mb)",
+            "ic2_temperature": "Temperature",
+            "ic2_chance": "Chance (0-1)",
+            "ic2_weight": "Weight",
+            "smelt_fuel": "Burn time",
+            "tooltip": "Tooltip"
         },
         "text": {
             "output": "Output items",
             "input": "Input items",
             "copied": "Recipe script copied to clipboard",
             "shaped": "Use shaped recipe",
-            "deleted": "Deletion script copied to clipboard"
+            "deleted": "Deletion script copied to clipboard",
+            "additional_inputs": "Additional parameters",
+            "error": "An error occurred while generating the recipe, check the entered data"
         },
-        "delete": {
+        "delete_fields": {
             "output": "Output item",
             "input": "Input item",
             "mod": "Mod",
             "type": "Recipe type",
             "id": "Recipe ID"
-        },
-        "additional_titles": {
-            "smelt_fuel": "Burn time",
-            "tooltip": "Tooltip"
         }
     }
 }
